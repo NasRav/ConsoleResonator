@@ -140,6 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleResonator.cpp" />
+    <ClCompile Include="Linear_2D.cpp" />
+    <ClCompile Include="Resonator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Linear_2D.h" />
+    <ClInclude Include="Resonator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

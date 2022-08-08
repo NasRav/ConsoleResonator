@@ -1,31 +1,27 @@
-﻿#include <iostream>
-#include <complex>
-#include <cmath>
-#include <vector>
+﻿#include <vector>
 #include <fstream>
+#include "Resonator.h"
+#include "Linear_2D.h"
 
 using namespace std;
 
 int main()
 {
 	const int				n_x(50), n_y(20);
-	const double			ro0(1.225), mu(1.82e-5), T_0(288.15), R_gas(8.31), M(0.029), PI(acos(-1)), gamma(1.4),
-							p0(ro0 * R_gas * T_0 / M), c0(sqrt(gamma * p0 / ro0));
+	const double			ro0(1.225), mu(1.82e-5), T_0(288.15), R_gas(8.31), M_mol(0.029), PI(acos(-1)), gamma(1.4),
+							p0(ro0 * R_gas * T_0 / M_mol), c0(sqrt(gamma * p0 / ro0));
 	const complex<double>	I(0, 1);
 	double					x_0, y_0;
 
-//	cout << "x_0 [m] = ";
-//	cin >> x_0;
-//	cout << "y_0 [m] = ";
-//	cin >> y_0;
 	x_0 = 0.5;
-//	y_0 = 0.0018;
+	y_0 = 0.0018;
 
 	double					omega = PI * c0 / (2 * x_0);
 	double					delta = sqrt(2 * mu / (omega * ro0));
-	y_0 = 20 * delta;
+
 	if (y_0 > 700 * delta)
 		exit(0);
+
 	complex<double>			beta = (I + 1.0) / delta;
 	complex<double>			f = tanh(beta * y_0) / (beta * y_0);
 	complex<double>			alpha = I * omega / c0 / sqrt(1.0 - f);
