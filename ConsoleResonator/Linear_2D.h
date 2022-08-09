@@ -31,5 +31,8 @@ public:
 	void					calculate_u();
 	void					calculate_v();
 	void					calculate_u_v();
+	void					write_in_file(int, string, vector<double>);
+	void					write_in_file(int, int, string, vector<vector<double>>);
+	void					resonance_curve();
 private:
 };

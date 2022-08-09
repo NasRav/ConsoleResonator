@@ -8,5 +8,8 @@ int main()
 
 	res2d.calculate_dp();
 	res2d.calculate_u_v();
+	res2d.write_in_file(2 * res2d.nx, "dp", res2d.dp);
+	res2d.write_in_file(2 * res2d.nx, res2d.n_y, "u", res2d.u);
+	res2d.write_in_file(2 * res2d.nx, res2d.n_y, "v", res2d.v);
 	return 0;
 }

@@ -73,21 +73,17 @@ Linear_2D::~Linear_2D()
 
 void	Linear_2D::calculate_dp()
 {
-	ofstream	dp_out("dp_2D_linear.txt");
 	for (int i = -nx; i <= nx; i++)
 	{
 		dp[i + nx] = -imag(0.5 / sqrt(1.0 - f) *
 			(sinh(alpha * static_cast<double>(x_0 * i / nx)) / cosh(alpha * x_0) -
 				cosh(alpha * static_cast<double>(x_0 * i / nx)) / sinh(alpha * x_0)) *
 			exp(I * 2.0 * PI));
-		dp_out << dp[i + nx] << '\t';
 	}
-	dp_out.close();
 }
 
 void	Linear_2D::calculate_u()
 {
-	ofstream	u_out("u_2D_linear.txt");
 	for (int j = 0; j < n_y; j++)
 	{
 		for (int i = -nx; i <= nx; i++)
@@ -97,16 +93,12 @@ void	Linear_2D::calculate_u()
 					sinh(alpha * static_cast<double>(x_0 * i / nx)) / sinh(alpha * x_0)) *
 				(1.0 - cosh(beta * static_cast<double>(y_0 * j / (n_y - 1))) / cosh(beta * y_0)) *
 				exp(I * 2.0 * PI));
-			u_out << u[i + nx][j] << '\t';
 		}	//for i nx
-		u_out << endl;
 	}	//for j ny
-	u_out.close();
 }
 
 void	Linear_2D::calculate_v()
 {
-	ofstream	v_out("v_2D_linear.txt");
 	for (int j = 0; j < n_y; j++)
 	{
 		for (int i = -nx; i <= nx; i++)
@@ -117,17 +109,12 @@ void	Linear_2D::calculate_v()
 				(sinh(beta * static_cast<double>(y_0 * j / (n_y - 1))) / sinh(beta * y_0) -
 					static_cast<double>(j / (n_y - 1))) *
 				exp(I * 2.0 * PI));
-			v_out << v[i + nx][j] << '\t';
 		}	//for i nx
-		v_out << endl;
 	}	//for j ny
-	v_out.close();
 }
 
 void	Linear_2D::calculate_u_v()
 {
-	ofstream	u_out("u_2D_linear.txt");
-	ofstream	v_out("v_2D_linear.txt");
 	for (int j = 0; j < n_y; j++)
 	{
 		for (int i = -nx; i <= nx; i++)
@@ -143,12 +130,34 @@ void	Linear_2D::calculate_u_v()
 				(sinh(beta * static_cast<double>(y_0 * j / (n_y - 1))) / sinh(beta * y_0) -
 					static_cast<double>(j / (n_y - 1))) *
 				exp(I * 2.0 * PI));
-			u_out << u[i + nx][j] << '\t';
-			v_out << v[i + nx][j] << '\t';
 		}	//for i nx
-		u_out << endl;
-		v_out << endl;
 	}	//for j ny
-	u_out.close();
-	v_out.close();
+}
+
+void	Linear_2D::write_in_file(int n, string name, vector<double> array)
+{
+	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
+	for (int i = 0; i <= n; i++)
+	{
+		f_out << array[i] << '\t';
+	}
+	f_out.close();
+}
+
+void	Linear_2D::write_in_file(int n, int m, string name, vector<vector<double>> array)
+{
+	ofstream	f_out(name +"_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
+	for (int j = 0; j < m; j++)
+	{
+		for (int i = 0; i <= n; i++)
+		{
+			f_out << array[i][j] << '\t';
+		}	//for i nx
+		f_out << endl;
+	}	//for j ny
+	f_out.close();
+}
+
+void	Linear_2D::resonance_curve()
+{
 }
