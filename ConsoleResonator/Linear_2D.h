@@ -17,7 +17,8 @@ public:
 	Linear_2D(double, double, int, int);
 	~Linear_2D();
 
-	const int				n_x, n_y;
+	const int				n_x, n_y, nx;
+	const double			x_0, y_0;
 	const complex<double>	I;
 	complex<double>			beta;
 	complex<double>			f;
