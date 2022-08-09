@@ -11,6 +11,6 @@ public:
 
 	const double ro0, mu, T_0, R_gas,
 		M_mol, PI, gamma, p0, c0;
-	double	L, H, omega, delta;
+	double	L, H, omega_res, delta;
 };
 
