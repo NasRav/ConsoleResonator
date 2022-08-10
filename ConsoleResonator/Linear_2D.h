@@ -28,7 +28,9 @@ public:
 	vector<vector<double>>	u;
 	vector<vector<double>>	v;
 	vector<double>			dp;
-	vector<vector<double>>	curve;
+	vector<double>			p_curve;
+	vector<double>			u_curve;
+	vector<double>			omega_vector;
 
 	void					calculate_dp(double);
 	void					calculate_u(double);
@@ -36,7 +38,8 @@ public:
 	void					calculate_u_v(double);
 	void					write_in_file(int, string, vector<double>);
 	void					write_in_file(int, int, string, vector<vector<double>>);
-	void					resonance_curve();
+	void					resonance_curve_p();
+	void					resonance_curve_u();
 	double					find_abs_max(vector<double>);
 	double					find_abs_max(vector<vector<double>>);
 };

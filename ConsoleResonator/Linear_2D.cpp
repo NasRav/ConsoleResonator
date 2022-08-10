@@ -37,7 +37,7 @@ Linear_2D::Linear_2D(double Length, double Height) :
 }
 
 Linear_2D::Linear_2D(double Length, double Height, int num_x, int num_y) :
-	n_x(num_x), n_y(num_y), I(0, 1), Resonator(Length, Height), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(20)
+	n_x(num_x), n_y(num_y), I(0, 1), Resonator(Length, Height), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
@@ -146,9 +146,7 @@ void	Linear_2D::write_in_file(int n, string name, vector<double> array)
 {
 	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
 	for (int i = 0; i < n; i++)
-	{
-		f_out << array[i] << '\t';
-	}
+		f_out << array[i] << '\n';
 	f_out.close();
 }
 
@@ -158,29 +156,39 @@ void	Linear_2D::write_in_file(int n, int m, string name, vector<vector<double>> 
 	for (int j = 0; j < m; j++)
 	{
 		for (int i = 0; i < n; i++)
-		{
 			f_out << array[i][j] << '\t';
-		}	//for i nx
 		f_out << endl;
-	}	//for j ny
+	}
 	f_out.close();
 }
 
-void	Linear_2D::resonance_curve()
+void	Linear_2D::resonance_curve_p()
 {
 	double	omega_curve;
 
-	curve.resize(3);
-	for (int i = 0; i < 3; i++)
-		curve[i].resize(2 * n_omega + 1);
+	omega_vector.resize(2 * n_omega + 1);
+	p_curve.resize(2 * n_omega + 1);
 	for (int i = -n_omega; i <= n_omega; i++)
 	{
 		omega_curve = omega_res * (1 + i * (0.1 / n_omega));
 		calculate_dp(omega_curve);
+		omega_vector[i + n_omega] = omega_curve / omega_res;
+		p_curve[i + n_omega] = find_abs_max(dp);
+	}
+}
+
+void	Linear_2D::resonance_curve_u()
+{
+	double	omega_curve;
+
+	omega_vector.resize(2 * n_omega + 1);
+	u_curve.resize(2 * n_omega + 1);
+	for (int i = -n_omega; i <= n_omega; i++)
+	{
+		omega_curve = omega_res * (1 + i * (0.1 / n_omega));
 		calculate_u(omega_curve);
-		curve[0][i + n_omega] = omega_curve / omega_res;
-		curve[1][i + n_omega] = find_abs_max(dp);
-		curve[2][i + n_omega] = find_abs_max(u);
+		omega_vector[i + n_omega] = omega_curve / omega_res;
+		u_curve[i + n_omega] = find_abs_max(u);
 	}
 }
 

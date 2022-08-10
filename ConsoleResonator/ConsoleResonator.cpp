@@ -11,7 +11,8 @@ int main()
 //	res2d.write_in_file(2 * res2d.nx + 1, "dp", res2d.dp);
 //	res2d.write_in_file(2 * res2d.nx + 1, res2d.n_y, "u", res2d.u);
 //	res2d.write_in_file(2 * res2d.nx + 1, res2d.n_y, "v", res2d.v);
-	res2d.resonance_curve();
-	res2d.write_in_file(3, 2 * res2d.n_omega + 1, "res_cur", res2d.curve);
+	res2d.resonance_curve_p();
+	res2d.write_in_file(2 * res2d.n_omega + 1, "omega_cur", res2d.omega_vector);
+	res2d.write_in_file(2 * res2d.n_omega + 1, "dp_res_cur", res2d.p_curve);
 	return 0;
 }
