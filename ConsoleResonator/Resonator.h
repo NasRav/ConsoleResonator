@@ -1,6 +1,13 @@
 #pragma once
 
 #include <iostream>
+#include <complex>
+#include <vector>
+#include <cmath>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
 
 class Resonator
 {

@@ -1,7 +1,7 @@
 #include "Linear_2D.h"
 
 Linear_2D::Linear_2D() :
-	n_x(200), n_y(100), I(0, 1), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
+	n_x(200), n_y(100), I(0, 1), Resonator(), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
@@ -13,7 +13,7 @@ Linear_2D::Linear_2D() :
 }
 
 Linear_2D::Linear_2D(int num_x, int num_y) :
-	n_x(num_x), n_y(num_y), I(0, 1), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
+	n_x(num_x), n_y(num_y), I(0, 1), Resonator(), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)

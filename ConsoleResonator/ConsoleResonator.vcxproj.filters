@@ -24,12 +24,18 @@
     <ClCompile Include="Resonator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Linear_1D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Linear_2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resonator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Linear_1D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

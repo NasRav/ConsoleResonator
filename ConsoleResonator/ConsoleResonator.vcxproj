@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleResonator.cpp" />
+    <ClCompile Include="Linear_1D.cpp" />
     <ClCompile Include="Linear_2D.cpp" />
     <ClCompile Include="Resonator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Linear_1D.h" />
     <ClInclude Include="Linear_2D.h" />
     <ClInclude Include="Resonator.h" />
   </ItemGroup>
