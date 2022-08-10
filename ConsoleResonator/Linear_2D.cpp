@@ -1,7 +1,7 @@
 #include "Linear_2D.h"
 
 Linear_2D::Linear_2D() :
-	n_x(200), n_y(100), I(0, 1), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x)
+	n_x(200), n_y(100), I(0, 1), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
@@ -13,7 +13,7 @@ Linear_2D::Linear_2D() :
 }
 
 Linear_2D::Linear_2D(int num_x, int num_y) :
-	n_x(num_x), n_y(num_y), I(0, 1), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x)
+	n_x(num_x), n_y(num_y), I(0, 1), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
@@ -25,7 +25,7 @@ Linear_2D::Linear_2D(int num_x, int num_y) :
 }
 
 Linear_2D::Linear_2D(double Length, double Height) :
-	n_x(200), n_y(100), I(0, 1), Resonator(Length, Height), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x)
+	n_x(200), n_y(100), I(0, 1), Resonator(Length, Height), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(1000)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
@@ -37,7 +37,7 @@ Linear_2D::Linear_2D(double Length, double Height) :
 }
 
 Linear_2D::Linear_2D(double Length, double Height, int num_x, int num_y) :
-	n_x(num_x), n_y(num_y), I(0, 1), Resonator(Length, Height), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x)
+	n_x(num_x), n_y(num_y), I(0, 1), Resonator(Length, Height), x_0(0.5 * L), y_0(0.5 * H), nx(0.5 * n_x), n_omega(20)
 {
 	u.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
@@ -145,7 +145,7 @@ void	Linear_2D::calculate_u_v(double omega)
 void	Linear_2D::write_in_file(int n, string name, vector<double> array)
 {
 	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
-	for (int i = 0; i <= n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		f_out << array[i] << '\t';
 	}
@@ -157,7 +157,7 @@ void	Linear_2D::write_in_file(int n, int m, string name, vector<vector<double>> 
 	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
 	for (int j = 0; j < m; j++)
 	{
-		for (int i = 0; i <= n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			f_out << array[i][j] << '\t';
 		}	//for i nx
@@ -169,25 +169,18 @@ void	Linear_2D::write_in_file(int n, int m, string name, vector<vector<double>> 
 void	Linear_2D::resonance_curve()
 {
 	double	omega_curve;
+
 	curve.resize(3);
-//	cout << "curve.size() = " << curve.size() << endl;
 	for (int i = 0; i < 3; i++)
+		curve[i].resize(2 * n_omega + 1);
+	for (int i = -n_omega; i <= n_omega; i++)
 	{
-		curve[i].resize(2001);
-//		cout << "curve.size()[" << i << "] = " << curve[i].size() << endl;
-	}
-	for (int i = -1000; i <= 1000; i++)
-	{
-		omega_curve = omega_res * (1 + i * 0.001);
-//		cout << "omega_curve["<< i << "] = " << omega_curve << endl;
+		omega_curve = omega_res * (1 + i * (0.1 / n_omega));
 		calculate_dp(omega_curve);
 		calculate_u(omega_curve);
-		curve[0][i + 1000] = omega_curve / omega_res;
-//		cout << "curve[0][" << i << "] = " << curve[0][i + 1] << endl;
-		curve[1][i + 1000] = find_abs_max(dp);
-//		cout << "curve[1][" << i << "] = " << curve[1][i + 1] << endl;
-		curve[2][i + 1000] = find_abs_max(u);
-//		cout << "curve[2][" << i << "] = " << curve[2][i + 1] << endl;
+		curve[0][i + n_omega] = omega_curve / omega_res;
+		curve[1][i + n_omega] = find_abs_max(dp);
+		curve[2][i + n_omega] = find_abs_max(u);
 	}
 }
 
