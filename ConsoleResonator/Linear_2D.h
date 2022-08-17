@@ -18,12 +18,12 @@ public:
 	complex<double>			beta;
 	complex<double>			f;
 	complex<double>			alpha;
-	vector<vector<double>>	u;
-	vector<vector<double>>	v;
 	vector<double>			dp;
 	vector<double>			p_curve;
 	vector<double>			u_curve;
 	vector<double>			omega_vector;
+	vector<vector<double>>	u;
+	vector<vector<double>>	v;
 
 	void					calculate_dp(double);
 	void					calculate_u(double);

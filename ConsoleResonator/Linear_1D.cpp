@@ -12,7 +12,7 @@ Linear_1D::Linear_1D() :
 }
 
 Linear_1D::Linear_1D(double Length) :
-	Resonator(Length, 0), n_x(200), n_t(8), n_omega(1000)
+	Resonator(Length), n_x(200), n_t(8), n_omega(1000)
 {
 	u.resize(n_x);
 	for (int i = 0; i < n_x; i++)
@@ -23,7 +23,7 @@ Linear_1D::Linear_1D(double Length) :
 }
 
 Linear_1D::Linear_1D(double Length, int num_x) :
-	Resonator(Length, 0), n_x(num_x), n_t(8), n_omega(1000)
+	Resonator(Length), n_x(num_x), n_t(8), n_omega(1000)
 {
 	u.resize(n_x);
 	for (int i = 0; i < n_x; i++)

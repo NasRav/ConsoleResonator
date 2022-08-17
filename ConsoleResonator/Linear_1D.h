@@ -11,8 +11,7 @@ public:
 	~Linear_1D();
 
 	const int				n_x, n_t, n_omega;
-	double					k;
-	double					omega;
+	double					k, omega;
 	vector<vector<double>>	dp;
 	vector<vector<double>>	u;
 	vector<double>			p_curve;

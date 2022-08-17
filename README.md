@@ -9,3 +9,5 @@ u and v are represented by values in the lower half-plane due to the symmetry.
 Function to calculate resonance curve added.
 
 2. Added 1D linear solution
+
+3. Added 1D non-linear solution

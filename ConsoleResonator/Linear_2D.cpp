@@ -87,8 +87,8 @@ void	Linear_2D::calculate_u(double omega)
 					sinh(alpha * static_cast<double>(x_0 * i / nx)) / sinh(alpha * x_0)) *
 				(1.0 - cosh(beta * static_cast<double>(y_0 * j / (n_y - 1))) / cosh(beta * y_0)) *
 				exp(I * 2.0 * PI));
-		}	//for i nx
-	}	//for j ny
+		}
+	}
 }
 
 void	Linear_2D::calculate_v(double omega)
@@ -110,8 +110,8 @@ void	Linear_2D::calculate_v(double omega)
 				(sinh(beta * static_cast<double>(y_0 * j / (n_y - 1))) / sinh(beta * y_0) -
 					static_cast<double>(j / (n_y - 1))) *
 				exp(I * 2.0 * PI));
-		}	//for i nx
-	}	//for j ny
+		}
+	}
 }
 
 void	Linear_2D::calculate_u_v(double omega)
@@ -138,8 +138,8 @@ void	Linear_2D::calculate_u_v(double omega)
 				(sinh(beta * static_cast<double>(y_0 * j / (n_y - 1))) / sinh(beta * y_0) -
 					static_cast<double>(j / (n_y - 1))) *
 				exp(I * 2.0 * PI));
-		}	//for i nx
-	}	//for j ny
+		}
+	}
 }
 
 void	Linear_2D::write_in_file(int n, string name, vector<double> array)
