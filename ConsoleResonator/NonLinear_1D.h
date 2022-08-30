@@ -23,6 +23,7 @@ public:
 	double					d_dx(vector<double>, int);
 	void					calculate_x_u_p(double);
 	void					write_in_file(int, string, vector<double>);
+	void					write_in_file(int, string, vector<double>, vector<double>);
 	void					resonance_curve_u_p();
 	double					find_abs_max(vector<double>);
 };

@@ -64,9 +64,17 @@ void	Linear_1D::calculate_u(double omega)
 
 void	Linear_1D::write_in_file(int n, string name, vector<double> array)
 {
-	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
+	ofstream	f_out(name + "_1D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
 	for (int i = 0; i < n; i++)
-		f_out << array[i] << '\n';
+		f_out << array[i] << endl;
+	f_out.close();
+}
+
+void	Linear_1D::write_in_file(int n, string name, vector<double> array1, vector<double> array2)
+{
+	ofstream	f_out(name + "_1D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");
+	for (int i = 0; i < n; i++)
+		f_out << array1[i] << ' ' << array2[i] << endl;
 	f_out.close();
 }
 

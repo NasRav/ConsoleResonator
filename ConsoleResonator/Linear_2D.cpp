@@ -150,6 +150,14 @@ void	Linear_2D::write_in_file(int n, string name, vector<double> array)
 	f_out.close();
 }
 
+void	Linear_2D::write_in_file(int n, string name, vector<double> array1, vector<double> array2)
+{
+	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + ".txt");
+	for (int i = 0; i < n; i++)
+		f_out << array1[i] << ' ' << array2[i] << endl;
+	f_out.close();
+}
+
 void	Linear_2D::write_in_file(int n, int m, string name, vector<vector<double>> array)
 {
 	ofstream	f_out(name + "_2D_linear_L=" + to_string(L) + "_H=" + to_string(H) + ".txt");

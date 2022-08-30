@@ -30,6 +30,7 @@ public:
 	void					calculate_v(double);
 	void					calculate_u_v(double);
 	void					write_in_file(int, string, vector<double>);
+	void					write_in_file(int, string, vector<double>, vector<double>);
 	void					write_in_file(int, int, string, vector<vector<double>>);
 	void					resonance_curve_p();
 	void					resonance_curve_u();

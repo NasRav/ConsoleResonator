@@ -21,6 +21,7 @@ public:
 	void					calculate_dp(double);
 	void					calculate_u(double);
 	void					write_in_file(int, string, vector<double>);
+	void					write_in_file(int, string, vector<double>, vector<double>);
 	void					write_in_file(int, int, string, vector<vector<double>>);
 	void					resonance_curve_p();
 	void					resonance_curve_u();

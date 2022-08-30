@@ -94,11 +94,19 @@ void	NonLinear_1D::calculate_x_u_p(double omega)
 		p[i] = (p0 / pow(d_dx(x[2], i), gamma) - p0) / (ro0 * c0 * omega * l);
 }
 
-void NonLinear_1D::write_in_file(int n, string name, vector<double> array)
+void	NonLinear_1D::write_in_file(int n, string name, vector<double> array)
 {
 	ofstream	f_out(name + "_1D_non_linear_L=" + to_string(L) + ".txt");
 	for (int i = 0; i < n; i++)
-		f_out << array[i] << '\n';
+		f_out << array[i] << endl;
+	f_out.close();
+}
+
+void	NonLinear_1D::write_in_file(int n, string name, vector<double> array1, vector<double> array2)
+{
+	ofstream	f_out(name + "_1D_non_linear_L=" + to_string(L) + ".txt");
+	for (int i = 0; i < n; i++)
+		f_out << array1[i] << ' ' << array2[i] << endl;
 	f_out.close();
 }
 
