@@ -43,10 +43,8 @@ NonLinear_2D::NonLinear_2D(double Length, double Height, int num_x, int num_y) :
 	for (int i = 0; i <= 2 * nx; i++)
 		u[i].resize(n_y);
 	u_0.resize(2 * nx + 1);
-	du_0_dx.resize(2 * nx + 1);
 	Y_x.resize(n_y);
 	Y_y.resize(n_y);
-	G.resize(2 * nx + 1);
 	v.resize(2 * nx + 1);
 	for (int i = 0; i <= 2 * nx; i++)
 		v[i].resize(n_y);
@@ -88,10 +86,6 @@ void	NonLinear_2D::calculate_u(double omega)
 		u_0[i + nx] = 0.5 / (1.0 - f)
 			* (cosh(alpha * static_cast<double>(x_0 * i / nx)) / cosh(alpha * x_0) -
 				sinh(alpha * static_cast<double>(x_0 * i / nx)) / sinh(alpha * x_0));
-		du_0_dx[i + nx] = conj( 0.5 * alpha / (1.0 - f)
-			* (sinh(alpha * static_cast<double>(x_0 * i / nx)) / cosh(alpha * x_0) -
-				cosh(alpha * static_cast<double>(x_0 * i / nx)) / sinh(alpha * x_0)) );
-		G[i + nx] = x_0 / pow(abs(l * omega), 2) * conj(u_0[i + nx]) * du_0_dx[i + nx];
 	}
 	for (int j = 0; j < n_y; j++)
 	{
@@ -258,4 +252,16 @@ double	NonLinear_2D::find_abs_max(vector<vector<double>> array)
 		}
 	}
 	return max;
+}
+
+complex<double>	du_0_dx(double x, complex<double> alpha, complex<double> f, double x_0) {
+	return conj( 0.5 * alpha / (1.0 - f)
+			* (sinh(alpha * static_cast<double>(x)) / cosh(alpha * x_0)
+				- cosh(alpha * static_cast<double>(x)) / sinh(alpha * x_0)) );
+}
+
+
+complex<double>	G(double x, double x_0, double u_0, double l, double omega,
+				complex<double> alpha, complex<double> f) {
+	return x_0 / pow(abs(l * omega), 2) * conj(u_0) * du_0_dx(x, alpha, f, x_0);
 }

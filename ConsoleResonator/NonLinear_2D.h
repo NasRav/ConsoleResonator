@@ -27,9 +27,7 @@ public:
 	vector<complex<double>>	u_0;
 	vector<complex<double>>	Y_x;
 	vector<complex<double>>	Y_y;
-	vector<complex<double>>	G;
 	vector<vector<double>>	v;
-	vector<complex<complex<double>>>	du_0_dx;
 
 	void					calculate_dp(double);
 	void					calculate_u(double);
@@ -42,4 +40,6 @@ public:
 	void					resonance_curve_u();
 	double					find_abs_max(vector<double>);
 	double					find_abs_max(vector<vector<double>>);
+	complex<double>			du_0_dx(double, complex<double>, complex<double>, double);
+	complex<double>			G(double x, double x_0, double u_0, double l, double omega);
 };
